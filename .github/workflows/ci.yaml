@@ -1,0 +1,50 @@
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  TEST_USER: john
+
+jobs:
+  tests:
+    runs-on: 
+      - "ubuntu-latest" 
+      # - "macos-latest"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set user
+        if: runner.os != 'macos'
+        run: |
+          sudo adduser --gecos "" --disabled-password "${TEST_USER}"
+
+      - name: Enable sudo NOPASSWD
+        run: |
+            echo "${USER} ALL=(ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/${USER}"
+            echo "${TEST_USER} ALL=(ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/${TEST_USER}"
+
+      - name: Uninstall GitHub Actions Homebrew
+        run: |
+          if which brew &>/dev/null
+          then
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+          fi
+
+      - name: Run bootstrap
+        run: |
+          export REMOTE="file://${GITHUB_WORKSPACE}"
+          export REMOTE_BRANCH="${GITHUB_REF##*/}"
+          export EDITOR=":"
+
+          ls -a "${GITHUB_WORKSPACE}"
+
+          sudo -EHiu "${TEST_USER}" bash -c "$(cat "${GITHUB_WORKSPACE}/.scripts/bootstrap.sh")"
+    
+      - name: Neovim checkhealth
+        run: |
+          nvim --headless +checkhealth "+w !tee" +qa

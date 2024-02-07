@@ -87,6 +87,8 @@ bootstrap_repo() {
 
 	check_dependencies "git"
 
+    ls -a "$HOME"
+
 	git init -b master
 	git remote add origin "$REMOTE"
 	ensure git fetch origin "$REMOTE_BRANCH"
