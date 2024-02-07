@@ -13,21 +13,15 @@ main() {
 		abort "This script is only supported on macOS and Linux."
 	fi
 
-	if confirm_action "Install Homebrew"; then
-		check_dependencies "bash" "curl" "git"
-		install_homebrew
-	fi
+	confirm_action "install Homebrew" && install_homebrew
 
-    bootstrap_dotfiles
+	confirm_action "bootstrap dotfiles repository" && bootstrap_repo
 
-	confirm_action "Install Homebrew packages from Brewfile" && install_brewfile
+	confirm_action "install homebrew bundle" && install_brew_bundle
 
-	confirm_action "Make fish your default shell" && make_fish_default_shell
+	set_default_shell
 
-	os_config="$HOME/.scripts/sys/$(uname | tr '[:upper:]' '[:lower:]').sh"
-	if [ -f "$os_config" ] && confirm_action "Set OS-specific configuration"; then
-		. "$os_config"
-	fi
+	confirm_action "load OS-specific configuration" && load_os_config
 
 	echo "Dotfiles Bootstrap completed."
 
@@ -119,8 +113,8 @@ load_os_config() {
 	fi
 }
 
-make_fish_default_shell() {
-	if command_exists "fish"; then
+set_default_shell() {
+	if command_exists "fish" && confirm_action "make fish your default shell"; then
 		fish_path=$(command -v fish)
 		echo "$fish_path" | sudo tee -a /etc/shells >/dev/null
 		chsh -s "$fish_path" "$USER"
