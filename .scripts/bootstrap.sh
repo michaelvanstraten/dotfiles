@@ -5,6 +5,7 @@
 : "${REMOTE_BRANCH:="master"}"
 : "${BREW_BUNDLE:="$HOME/.homebrew/Brewfile"}"
 : "${EDITOR:=vi}"
+: "${SKIP:=""}"
 
 main() {
 	# Check if OS is compatible.
@@ -13,7 +14,9 @@ main() {
 		abort "This script is only supported on macOS and Linux."
 	fi
 
-	confirm_action "install Homebrew" && install_homebrew
+	if ! skip "HOMEBREW_INSTALL"; then
+		confirm_action "install Homebrew" && install_homebrew
+	fi
 
 	confirm_action "bootstrap dotfiles repository" && bootstrap_repo
 
@@ -178,6 +181,13 @@ check_dependencies() {
 			abort "${tty_yellow}$dep${tty_reset} is a required dependency for this step. Please install it and run this script again."
 		fi
 	done
+}
+
+skip() {
+	case "$SKIP" in
+	*"$1"*) return 0 ;;
+	*) return 1 ;;
+	esac
 }
 
 main "$@" || exit 1
