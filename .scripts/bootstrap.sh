@@ -95,11 +95,6 @@ bootstrap_repo() {
 	ensure git checkout -b master "origin/$REMOTE_BRANCH"
 	ensure git submodule update --init --recursive
 
-	# Hide readme.md if on macOS
-	if [ "$(uname -s)" = "Darwin" ]; then
-		chflags hidden "$HOME/readme.md"
-	fi
-
 	# Add remote sub-tree repositories
 	if ! git remote | grep --quiet --ignore-case betterfox; then
 		git remote add Betterfox https://github.com/yokoffing/Betterfox
