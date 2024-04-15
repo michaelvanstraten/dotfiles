@@ -4,7 +4,6 @@ treesitter
 cmd
 neovim
 lspconfig
-lazyvim
 lsp
 keymaps
 neo

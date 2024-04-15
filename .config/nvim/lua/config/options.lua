@@ -1,9 +1,6 @@
 local g = vim.g
 local opt = vim.opt
 
--- Disable LazyVim auto format
-vim.g.autoformat = false
-
 -- Use latex format for `.tex` files
 g.tex_flavor = "latex"
 
