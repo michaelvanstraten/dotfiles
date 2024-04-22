@@ -7,21 +7,16 @@ map("i", "kj", "<ESC>", { desc = "Escape insert mode" })
 -- Disable recording of macros
 map({ "n" }, "q", "<nop>", { desc = "does nothing to disable recording" })
 
--- lazygit
--- map("n", "<leader>g", function()
--- 	util.terminal({ "lazygit" }, { cwd = util.root(), esc_esc = false, ctrl_hjkl = false })
--- end, { desc = "Lazygit (root dir)" })
--- map("n", "<leader>G", function()
--- 	util.terminal({ "lazygit" }, { esc_esc = false, ctrl_hjkl = false })
--- end, { desc = "Lazygit (cwd)" })
-
 -- Move Lines
-map("n", "J", "<cmd>m .+1<cr>==", { desc = "Move down" })
-map("n", "K", "<cmd>m .-2<cr>==", { desc = "Move up" })
-map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move line Down" })
+map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move line Up" })
+map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move line Down" })
+map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move line Up" })
+map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move line Down" })
+map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move line Up" })
 
--- Format files
--- map({ "n", "v" }, "<leader>fm", function()
--- 	util.format({ force = true })
--- end, { desc = "Format" })
+-- Move to window using the <ctrl> hjkl keys
+map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })

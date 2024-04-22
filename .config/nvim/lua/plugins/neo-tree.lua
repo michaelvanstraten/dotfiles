@@ -13,6 +13,12 @@ return {
 				desc = "Toggle file explorer (Neotree)",
 			},
 		},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
+			"3rd/image.nvim",
+		},
 		opts = {
 			sources = {
 				"filesystem",

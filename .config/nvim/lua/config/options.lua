@@ -1,36 +1,46 @@
 local g = vim.g
+
+-- Global Settings
+g.tex_flavor = "latex"
+g.mapleader = " "
+g.maplocalleader = "\\"
+
 local opt = vim.opt
 
--- Use latex format for `.tex` files
-g.tex_flavor = "latex"
-
--- Indenting
+-- Indentation
 opt.shiftwidth = 4
 opt.tabstop = 4
 opt.softtabstop = 4
 
--- Numbers
+-- Display
+opt.signcolumn = "yes"
+opt.number = true
 opt.relativenumber = true
+opt.pumblend = 10
+opt.termguicolors = true
+opt.fillchars = {
+  eob = " ",
+}
 
--- Disable swap file
+-- Mouse
+opt.mouse = "a"
+
+-- File Handling
+opt.undofile = true
 opt.swapfile = false
 
--- Hide status line
--- opt.laststatus = 0
-
--- Enable smart wrapping
-opt.wrap = false
+-- Wrapping and Formatting
+opt.wrap = true
 opt.breakindent = false
 
--- Disable indent guide
-opt.list = false
-
--- Enable spell checking
-opt.spelllang = {
-	"en",
-	"de",
-}
+-- Spell Checking
+opt.spelllang = { "en", "de" }
 opt.spell = true
 
--- Match keywords with hyphen
+-- Additional Settings
+if vim.fn.has("nvim-0.10") == 1 then
+	opt.smoothscroll = true
+end
+
+-- Keyword Matching
 opt.iskeyword:append("-")
