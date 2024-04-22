@@ -8,10 +8,11 @@
   "conform.nvim": { "branch": "master", "commit": "a6965ac128eba75537ec2bc5ddd5d5e357062bdc" },
   "gitsigns.nvim": { "branch": "main", "commit": "7e38f07cab0e5387f9f41e92474db174a63a4725" },
   "image.nvim": { "branch": "master", "commit": "301de7919b2c0378cb7a782663f67abbcb198b17" },
-  "lazy.nvim": { "branch": "main", "commit": "31ddbea7c10b6920c9077b66c97951ca8682d5c8" },
+  "lazy.nvim": { "branch": "main", "commit": "bef521ac89c8d423f9d092e37b58e8af0c099309" },
   "lazygit.nvim": { "branch": "main", "commit": "0ada6c6e7e138df92f5009b6952f4ac41248305a" },
   "mini.ai": { "branch": "main", "commit": "ee9446a17c160aba6a04ff22097389c41872c878" },
   "mini.comment": { "branch": "main", "commit": "f9f1a646fd3d9df7397aa1b9550a875fe8189eb0" },
+  "mini.pairs": { "branch": "main", "commit": "04f58f2545ed80ac3b52dd4826e93f33e15b2af6" },
   "mini.surround": { "branch": "main", "commit": "d035934958e2605048ee1378ce47cf799f7071d4" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "7aad1bf3f6b849cbf108e02c55ad4d701cb4d33a" },
   "neoconf.nvim": { "branch": "main", "commit": "a7da418753379af428f5d26ac91aa6fc18baf86e" },
@@ -25,4 +26,3 @@
   "plenary.nvim": { "branch": "master", "commit": "8aad4396840be7fc42896e3011751b7609ca4119" },
   "telescope.nvim": { "branch": "master", "commit": "d00d9df48c00d8682c14c2b5da78bda7ef06b939" },
   "vim-tmux-navigator": { "branch": "master", "commit": "a26954a585b02a2ac02f87145e204f8798a7cbc2" }
-}
