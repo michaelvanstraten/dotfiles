@@ -1,16 +1,32 @@
 return {
-    {
-        "neovim/nvim-lspconfig",
-        -- init = function()
-        --     local keys = require("lazyvim.plugins.lsp.keymaps").get()
-        --
-        --     keys[#keys + 1] = { "<leader>cr", false }
-        --     keys[#keys + 1] = {
-        --         "<leader>rn",
-        --         vim.lsp.buf.rename,
-        --         desc = "Rename",
-        --         has = "rename",
-        --     }
-        -- end,
-    },
+	{
+		"neovim/nvim-lspconfig",
+		event = "VeryLazy",
+		dependencies = {
+			"folke/neoconf.nvim",
+			"folke/neodev.nvim",
+		},
+		config = function()
+			local lspconfig = require("lspconfig")
+
+			lspconfig.lua_ls.setup({
+				settings = {
+					Lua = {
+						workspace = {
+							checkThirdParty = false,
+						},
+						codeLens = {
+							enable = true,
+						},
+						completion = {
+							callSnippet = "Replace",
+						},
+					},
+				},
+			})
+
+			lspconfig.texlab.setup({})
+			lspconfig.rust_analyzer.setup({})
+		end,
+	},
 }
