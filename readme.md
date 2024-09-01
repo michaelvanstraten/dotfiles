@@ -4,6 +4,9 @@
 
 Welcome to my dotfiles repository, where I store configuration and setup files from my home directory. These dotfiles help me maintain a consistent and efficient environment across different systems.
 
+> [!IMPORTANT]
+> This repository is deprecated. Please refer to the [michaelvanstraten/systems](https://github.com/michaelvanstraten/systems) repository for the latest configurations and system management.
+
 ## Installation
 
 ```bash
